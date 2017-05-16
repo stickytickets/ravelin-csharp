@@ -1,0 +1,39 @@
+{
+	"version": "1.0.0-*",
+	"buildOptions": {
+		"emitEntryPoint": false,
+		"platform": "anycpu",
+		"define": [ "DEBUG" ]
+	},
+	"configurations": {
+		"Release": {
+			"buildOptions": {
+				"warningsAsErrors": false
+			}
+		}
+	},
+	"frameworks": {
+		"netstandard1.4": {
+			"buildOptions": {
+				"define": [ "NETSTANDARD" ]
+			},
+			"imports": "dotnet5.6",
+			"dependencies": {
+				"NETStandard.Library": "1.6.1",
+				"System.Reflection.TypeExtensions": "4.3.0"
+			}
+		},
+		"net451": {
+			"buildOptions": {
+				"define": [ "NET451" ]
+			},
+			"frameworkAssemblies": {
+				"System.Net.Http": "4.0.0",
+				"System.Runtime.Serialization": "4.0.0"
+			}
+		}
+	},
+	"dependencies": {
+		"Newtonsoft.Json": "9.0.1"
+	}
+}
