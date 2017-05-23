@@ -1,9 +1,16 @@
 {
 	"version": "1.0.0-*",
+	"authors": [ "Sticky Tickets" ],
+	"description": "C# library for the Ravelin API. Ravelin is a fraud detection tool.",
 	"buildOptions": {
 		"emitEntryPoint": false,
 		"platform": "anycpu",
 		"define": [ "DEBUG" ]
+	},
+	"packOptions": {
+		"owners": [ "Sticky Tickets" ],
+		"projectUrl": "https://github.com/stickytickets/ravelin-csharp",
+		"licenseUrl": "https://github.com/stickytickets/ravelin-csharp/blob/master/LICENSE"
 	},
 	"configurations": {
 		"Release": {
