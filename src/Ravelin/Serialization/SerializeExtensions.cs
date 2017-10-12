@@ -9,9 +9,19 @@ namespace Ravelin.Serialization
 {
 	public static class SerializeExtensions
 	{
+		private static JsonSerializerSettings serializerSettings;
+
+		//followed similar approach discussed here: https://github.com/HangfireIO/Hangfire/issues/286
+		//and sample code: https://github.com/HangfireIO/Hangfire/blob/master/src/Hangfire.Core/Common/JobHelper.cs
+		public static void SetSerializerSettings(JsonSerializerSettings setting)
+		{
+			serializerSettings = setting;
+		}
+
 		static SerializeExtensions()
 		{
-			JsonConvert.DefaultSettings = () => new JsonSerializerSettings
+			//set default for Ravelin serialization only 
+			serializerSettings = new JsonSerializerSettings
 			{
 				Formatting = Formatting.Indented,
 				NullValueHandling = NullValueHandling.Ignore,
@@ -28,7 +38,7 @@ namespace Ravelin.Serialization
 		{
 			item.Timestamp = item.Timestamp ?? DateTime.UtcNow;
 
-			return JsonConvert.SerializeObject(item);
+			return JsonConvert.SerializeObject(item, serializerSettings);
 		}
 	}
 }
