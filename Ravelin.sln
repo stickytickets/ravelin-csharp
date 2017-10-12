@@ -1,26 +1,23 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{38BFD57C-F9F8-465D-8C89-5F8CECBA0EE2}"
-	ProjectSection(SolutionItems) = preProject
-		global.json = global.json
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Example Projects", "Example Projects", "{8F31BB8C-11D6-4C6D-828E-39594480C3B7}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ExampleCore", "examples\ExampleCore\ExampleCore.xproj", "{C9B423B8-EA87-4C7E-BB59-679AF24A4BB9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleNet451", "examples\ExampleNet451\ExampleNet451.csproj", "{9EF1762C-25D3-46D7-ADC5-53FF138E5D40}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B1C5F345-0905-452D-A717-C0B688F7C966}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Ravelin", "src\Ravelin\Ravelin.xproj", "{9730C108-81B7-4A14-9A8B-5410E14BE7F3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{0E07CFE6-4493-4FBC-B9DD-250B7254FE6F}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Ravelin.Tests", "tests\Ravelin.Tests\Ravelin.Tests.xproj", "{6434374F-6F55-43F9-A73E-63FC30E11B94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExampleCore", "examples\ExampleCore\ExampleCore.csproj", "{C9B423B8-EA87-4C7E-BB59-679AF24A4BB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleNet451", "examples\ExampleNet451\ExampleNet451.csproj", "{9EF1762C-25D3-46D7-ADC5-53FF138E5D40}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ravelin", "src\Ravelin\Ravelin.csproj", "{9730C108-81B7-4A14-9A8B-5410E14BE7F3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ravelin.Tests", "tests\Ravelin.Tests\Ravelin.Tests.csproj", "{6434374F-6F55-43F9-A73E-63FC30E11B94}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,5 +50,8 @@ Global
 		{9EF1762C-25D3-46D7-ADC5-53FF138E5D40} = {8F31BB8C-11D6-4C6D-828E-39594480C3B7}
 		{9730C108-81B7-4A14-9A8B-5410E14BE7F3} = {B1C5F345-0905-452D-A717-C0B688F7C966}
 		{6434374F-6F55-43F9-A73E-63FC30E11B94} = {0E07CFE6-4493-4FBC-B9DD-250B7254FE6F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E8DEAB31-6BDE-4486-BDFF-7BC6F488EF69}
 	EndGlobalSection
 EndGlobal
