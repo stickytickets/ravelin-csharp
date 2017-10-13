@@ -46,6 +46,14 @@ namespace Ravelin
 		public RavelinClient(string apiKey, string host = null, string version = "v2") : this(null, apiKey, host, version)
 		{
 		}
+		/// <summary>
+		/// Initializes a new instance of the <see cref="RavelinClient"/> class.
+		/// </summary>
+		/// <param name="config">Object containing parameters that is more friendly with DI containers</param>
+		public RavelinClient(RavelinClientConfig config) : 
+			this(null, config.ApiKey, config.HostUrl, config.Version)
+		{
+		}
 
 		public async Task<BackfillResponse> SendBackfillEvent(EventType eventType, IEvent data)
 		{
