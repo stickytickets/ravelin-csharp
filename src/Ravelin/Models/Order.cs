@@ -50,12 +50,22 @@ namespace Ravelin.Models
 		/// <summary>
 		/// The logical place in which this order occurs
 		/// </summary>
-		public string Market { get; set; }
+		private string market;
+		public string Market
+		{
+			get { return market; }
+			set { market = value?.ToLower(); } //force the lower case requirement: https://developer.ravelin.com/v2/#customer
+		}
 
 		/// <summary>
 		/// Used in conjunction with market and country to fully describe the market for this order
 		/// </summary>
-		public string MarketCity { get; set; }
+		private string marketCity;
+		public string MarketCity
+		{
+			get { return marketCity; }
+			set { marketCity = value?.ToLower(); } //force the lower case requirement: https://developer.ravelin.com/v2/#customer
+		}
 
 		/// <summary>
 		/// The time in UTC when the order was created
