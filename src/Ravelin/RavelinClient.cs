@@ -15,7 +15,7 @@ using System.Net;
 
 namespace Ravelin
 {
-	public class RavelinClient
+	public class RavelinClient : IRavelinClient
 	{
 		public const string RavelinVaultHost = "https://vault.ravelin.com/";
 		public const string BackfillPrefix = "backfill";
