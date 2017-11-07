@@ -89,7 +89,7 @@ namespace Ravelin.Tests
 		[InlineData(EventType.Checkout, "https://vault.ravelin.com/v2/checkout")]
 		public async void send_event_to_vault_when_pan_provided(EventType eventType, string expectedRequestUri)
 		{
-			var data = (IPaymentMethodEvent)RavelinClientTestHelpers.RavelinEvents[eventType];
+			var data = (IPaymentMethodEvent)RavelinClientTestHelpers.RavelinVaultEvents[eventType];
 
 			data.PaymentMethod.Pan = "5454545454545454";
 
@@ -117,7 +117,8 @@ namespace Ravelin.Tests
 			FakeHttpMessageHandler = new Mock<FakeHttpMessageHandler> { CallBase = true };
 
 			FakeHttpMessageHandler.Setup(handler => handler.Send(It.IsAny<HttpRequestMessage>()))
-				.Returns<HttpRequestMessage>(request => new HttpResponseMessage {
+				.Returns<HttpRequestMessage>(request => new HttpResponseMessage
+				{
 					StatusCode = HttpStatusCode.OK,
 					Content = new StringContent(RavelinClientTestHelpers.GetResponse(request.RequestUri.ToString()))
 				});
