@@ -1,12 +1,5 @@
-﻿using System;
-using System.Net;
-using System.Net.Http;
-using FluentAssertions;
-using Moq;
+﻿using FluentAssertions;
 using Ravelin.Models;
-using Ravelin.Models.Enums;
-using Ravelin.Models.Events;
-using Ravelin.Models.Responses;
 using Xunit;
 namespace Ravelin.Tests
 {
