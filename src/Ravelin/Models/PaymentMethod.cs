@@ -110,12 +110,13 @@ namespace Ravelin.Models
 		/// </summary>
 		public string Pan { get; set; }
 
-		
+
 		// PayPal specific fields
 
 		/// <summary>
 		/// PayPal account ID (required)
 		/// </summary>
-		public string Email { get; set; }
+		[JsonProperty(PropertyName = "email")]
+		public string PayPalEmail { get; set; }
 	}
 }

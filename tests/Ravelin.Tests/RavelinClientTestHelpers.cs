@@ -95,7 +95,8 @@ namespace Ravelin.Tests
 			DeviceId = "2b6f0cc904d137be2e1730235f5664094b831186"
 		};
 
-		public static PaymentMethodEvent PaymentMethodEvent = new PaymentMethodEvent
+		//return new object everytime to prevent concurrency conflicts when running unit tests in parallel
+		public static PaymentMethodEvent PaymentMethodEvent => new PaymentMethodEvent()
 		{
 			CustomerId = "61283761287361",
 			PaymentMethod = new PaymentMethod
@@ -193,7 +194,8 @@ namespace Ravelin.Tests
 			}
 		};
 
-		public static CheckoutEvent CheckoutEvent = new CheckoutEvent
+		//return new object everytime to prevent concurrency conflicts when running unit tests in parallel
+		public static CheckoutEvent CheckoutEvent => new CheckoutEvent()
 		{
 			Customer = new Customer
 			{
@@ -221,24 +223,24 @@ namespace Ravelin.Tests
 				Price = 4675,
 				Currency = "GBP",
 				Items = new List<Item>
+				{
+					new Item
 					{
-						new Item
-						{
-							Sku = "3726-8",
-							Name = "Women's Arch Sweater M 55",
-							Price = 1990,
-							Currency = "GBP",
-							Quantity = 2
-						},
-						new Item
-						{
-							Sku = "3731-4",
-							Name = "Women's Yellow Tee M 54",
-							Price = 695,
-							Currency = "GBP",
-							Quantity = 1
-						}
+						Sku = "3726-8",
+						Name = "Women's Arch Sweater M 55",
+						Price = 1990,
+						Currency = "GBP",
+						Quantity = 2
+					},
+					new Item
+					{
+						Sku = "3731-4",
+						Name = "Women's Yellow Tee M 54",
+						Price = 695,
+						Currency = "GBP",
+						Quantity = 1
 					}
+				}
 			},
 			PaymentMethod = new PaymentMethod
 			{
@@ -294,6 +296,13 @@ namespace Ravelin.Tests
 			{ EventType.Login, LoginEvent },
 			{ EventType.Checkout, CheckoutEvent },
 			{ EventType.Chargeback, ChargebackEvent }
+		};
+
+		//prevents concurrency conflicts when running unit tests in parallel
+		public static Dictionary<EventType, IEvent> RavelinVaultEvents = new Dictionary<EventType, IEvent>
+		{
+			{ EventType.PaymentMethod, PaymentMethodEvent },
+			{ EventType.Checkout, CheckoutEvent },
 		};
 
 		public static Dictionary<string, string> RavelinResponses = new Dictionary<string, string>

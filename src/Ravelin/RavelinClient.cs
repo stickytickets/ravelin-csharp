@@ -9,10 +9,13 @@ using Ravelin.Models.Events;
 using Ravelin.Models.Responses;
 using Ravelin.Serialization;
 using Ravelin.Utils;
+#if NET451
+using System.Net;
+#endif
 
 namespace Ravelin
 {
-	public class RavelinClient
+	public class RavelinClient : IRavelinClient
 	{
 		public const string RavelinVaultHost = "https://vault.ravelin.com/";
 		public const string BackfillPrefix = "backfill";
@@ -46,6 +49,14 @@ namespace Ravelin
 		public RavelinClient(string apiKey, string host = null, string version = "v2") : this(null, apiKey, host, version)
 		{
 		}
+		/// <summary>
+		/// Initializes a new instance of the <see cref="RavelinClient"/> class.
+		/// </summary>
+		/// <param name="config">Object containing parameters that is more friendly with DI containers</param>
+		public RavelinClient(RavelinClientConfig config) : 
+			this(null, config.ApiKey, config.HostUrl, config.Version)
+		{
+		}
 
 		public async Task<BackfillResponse> SendBackfillEvent(EventType eventType, IEvent data)
 		{
@@ -70,6 +81,12 @@ namespace Ravelin
 		/// <param name="version">API version</param>
 		private void InitiateClient(string apiKey, string host, string version)
 		{
+#if NET451
+			//ravelin requires connection to be in tls 1.2 as per advisory - https://syslog.ravelin.com/upgrading-to-tls-1-2-44f5efab9d59
+			// .Net 4.5 does not use this by default.so we need to set it
+			System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+#endif
+
 			Version = version;
 			MediaType = "application/json";
 
