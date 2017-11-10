@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Http;
 using FluentAssertions;
 using Moq;
+using Ravelin.Models;
 using Ravelin.Models.Enums;
 using Ravelin.Models.Events;
 using Ravelin.Models.Responses;
@@ -59,7 +60,7 @@ namespace Ravelin.Tests
 			response.StatusCode.Should().Be(HttpStatusCode.OK);
 			response.Score.Should().NotBeNull();
 			response.Score.CustomerId.Should().Be("61283761287361");
-			response.Score.Action.Should().Be("ALLOW");
+			response.Score.Action.Should().Be(ScoreAction.Allow);
 			response.Score.Source.Should().Be("RAVELIN");
 			response.Score.ScoreId.Should().Be("0de0af95-7508-4a25-577b-040a2d209634");
 		}
