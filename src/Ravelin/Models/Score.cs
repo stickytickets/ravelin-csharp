@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using Ravelin.Models.Enums;
 
 namespace Ravelin.Models
 {
@@ -28,17 +29,5 @@ namespace Ravelin.Models
 		/// In the case of manual review, this is the comment left by the reviewer on this particular review action
 		/// </summary>
 		public string Comment { get; set; }
-	}
-
-	public enum ScoreAction
-	{
-		[Description("ALLOW")]
-		Allow,
-
-		[Description("REVIEW")]
-		Review,
-
-		[Description("PREVENT")]
-		Prevent
 	}
 }
