@@ -1,4 +1,6 @@
 ﻿using System;
+using Newtonsoft.Json;
+using Ravelin.Models.Enums;
 
 namespace Ravelin.Models
 {
@@ -22,17 +24,19 @@ namespace Ravelin.Models
 		/// <summary>
 		/// Timestamp at which event is scheduled to start (unix time). If the event is ongoing/recurring, you can use the ticket time here.
 		/// </summary>
+		[JsonProperty(PropertyName = "StartTime")]
 		public DateTime? StartTimeUtc { get; set; }
 
 		/// <summary>
 		/// Timestamp at which event is scheduled to end (unix time). If the event is ongoing/recurring, you can use the ticket time here.
 		/// </summary>
+		[JsonProperty(PropertyName = "EndTime")]
 		public DateTime? EndTimeUtc { get; set; }
 
 		/// <summary>
 		/// The category that best described the type of event. One of: sport music attraction conference convention party festival
 		/// </summary>
-		public string Category { get; set; }
+		public EventCategory Category { get; set; }
 
 		/// <summary>
 		/// The location the event will take place.

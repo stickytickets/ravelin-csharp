@@ -1,16 +1,17 @@
 ﻿using System.ComponentModel;
+using System.Runtime.Serialization;
 
 namespace Ravelin.Models.Enums
 {
 	public enum ScoreAction
 	{
-		[Description("ALLOW")]
+		[EnumMember(Value = "ALLOW")]
 		Allow,
 
-		[Description("REVIEW")]
+		[EnumMember(Value = "REVIEW")]
 		Review,
 
-		[Description("PREVENT")]
+		[EnumMember(Value = "PREVENT")]
 		Prevent
 	}
 }

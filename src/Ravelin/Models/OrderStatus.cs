@@ -1,6 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using System.ComponentModel;
+using Newtonsoft.Json;
 using Ravelin.Models.Enums;
-using Ravelin.Utils;
 
 namespace Ravelin.Models
 {
@@ -9,48 +9,54 @@ namespace Ravelin.Models
 	/// </summary>
 	public class OrderStatus
 	{
-		/// <summary>
-		/// The most recent status of the order
-		/// </summary>
-		public OrderStage Stage { get; set; }
+		public OrderStatus(OrderStage stage, OrderStageReason? reason = null)
+		{
+			ValidateReason(stage, reason);
+			Stage = stage;
+			Reason = reason;
+		}
 
-		/// <summary>
-		/// Status reason provides context to the order status. Value retrieved from either FailedReason, CancelledReason, RefundedReason
-		/// </summary>
-		public string Reason {
-			get
+		private void ValidateReason(OrderStage stage, OrderStageReason? reason)
+		{
+			switch (stage)
 			{
-				switch (Stage)
-				{
-					case OrderStage.Failed:
-						return FailedReason.GetEnumMemberValue();
-					case OrderStage.Cancelled:
-						return CancelledReason.GetEnumMemberValue();
-					case OrderStage.Refunded:
-						return RefundedReason.GetEnumMemberValue();
-					default:
-						return null;
-				}
+				case OrderStage.Accepted:
+				case OrderStage.Fulfilled:
+				case OrderStage.Pending: 
+					if(!reason.HasValue) break;
+					else throw new InvalidEnumArgumentException("Invalid reason set for Failed order stage");
+
+				case OrderStage.Failed:
+					if(reason == OrderStageReason.FailedPaymentDeclined ||
+						reason == OrderStageReason.FailedSystemError ||
+						reason == OrderStageReason.FailedSellerRejected)
+						break;
+					else throw new InvalidEnumArgumentException("Invalid reason set for Failed order stage");
+
+				case OrderStage.Cancelled:
+					if(reason == OrderStageReason.CancelledBuyer ||
+						reason == OrderStageReason.CancelledMerchant ||
+						reason == OrderStageReason.CancelledRavelin ||
+						reason == OrderStageReason.CancelledSeller)
+						break;
+					else throw new InvalidEnumArgumentException("Invalid reason set for Cancelled order stage");
+				case OrderStage.Refunded:
+					if(reason == OrderStageReason.RefundedReturned ||
+						reason == OrderStageReason.RefundedComplaint)
+					break;
+					else throw new InvalidEnumArgumentException("Invalid reason set for Cancelled order stage");
 			}
 		}
 
 		/// <summary>
-		/// Reason for failed order status stage
+		/// The most recent status of the order
 		/// </summary>
-		[JsonIgnore]
-		public OrderFailedReason? FailedReason { get; set; }
+		public OrderStage Stage { get; }
 
 		/// <summary>
-		/// Reason for cancelled order status stage
+		/// Status reason provides context to the order status. Value retrieved from either FailedReason, CancelledReason, RefundedReason
 		/// </summary>
-		[JsonIgnore]
-		public OrderCancelledReason? CancelledReason { get; set; }
-
-		/// <summary>
-		/// Reason for refunded order status stage
-		/// </summary>
-		[JsonIgnore]
-		public OrderRefundedReason? RefundedReason { get; set; }
+		public OrderStageReason? Reason { get; }
 
 		/// <summary>
 		/// Entity that caused the latest order status.
