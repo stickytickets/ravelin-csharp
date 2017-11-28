@@ -1,4 +1,7 @@
-﻿namespace Ravelin.Models
+﻿using System.ComponentModel;
+using Ravelin.Models.Enums;
+
+namespace Ravelin.Models
 {
 	public class Score
 	{
@@ -10,7 +13,7 @@
 		/// <summary>
 		/// Action to take for this customer, according to Ravelin. One of ALLOW, REVIEW, PREVENT.
 		/// </summary>
-		public string Action { get; set; }
+		public ScoreAction Action { get; set; }
 
 		/// <summary>
 		/// Source of the score (e.g. RAVELIN or MANUAL_REVIEW)

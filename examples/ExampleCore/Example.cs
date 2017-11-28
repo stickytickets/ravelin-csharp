@@ -116,9 +116,8 @@ namespace ExampleCore
 					},
 					CreationTimeUtc = DateTime.UtcNow,
 					ExecutionTimeUtc = DateTime.UtcNow,
-					Status = new OrderStatus
+					Status = new OrderStatus(OrderStage.Pending)
 					{
-						Stage = OrderStage.Pending,
 						Actor = "buyer"
 					}
 				},
@@ -126,6 +125,134 @@ namespace ExampleCore
 			};
 
 			OutputResponse(await client.SendEvent(EventType.Order, orderEvent));
+
+			//order event with tickets ticket items
+			var eventDate = DateTime.UtcNow.AddDays(60);
+			var orderTicketEvent = new OrderEvent
+			{
+				CustomerId = "61283761287361",
+				Order = new Order
+				{
+					OrderId = "n1QSYK0ceGNZqU28ien3",
+					Price = 4675,
+					Currency = "GBP",
+					Market = "europe",
+					Country = "GBR",
+					MarketCity = "london",
+					Items = new List<Item>
+					{
+						new Item
+					{
+						Sku = "1111",
+						Name = "World Concert Series -Seat A",
+						Price = 100,
+						Currency = "GBP",
+						Quantity = 1,
+						EventTicket = new EventTicket()
+						{
+							Event = new EventInformation()
+							{
+								Venue = new Venue()
+								{
+									Location = new Location()
+									{
+										Street1 = "Peninsula Square, London SE10 0DX",
+										Region = "London",
+										Country = "GBR",
+									},
+									Name = "The O2 Arena"
+								},
+								Description = "World Concert Series",
+								Name = "World Concert Series",
+								Category = EventCategory.Music,
+								StartTimeUtc = eventDate,
+								EndTimeUtc = eventDate.AddHours(2),
+								EventId = "EVT1"
+							},
+							Guest = new Guest()
+							{
+								Name = "Mark Twain",
+								FamilyName = "Twain",
+								GivenName = "Mark",
+								IsPurchaser = true
+							},
+							Ticket = new Ticket()
+							{
+								Refundable = true,
+								TicketId = "TKT1",
+								TicketType = "Seat A",
+							}
+						}
+					},
+					new Item
+					{
+						Sku = "2222",
+						Name = "World Concert Series -Seat B",
+						Price = 200,
+						Currency = "GBP",
+						Quantity = 1,
+						EventTicket = new EventTicket()
+						{
+							Event = new EventInformation()
+							{
+								Venue = new Venue()
+								{
+									Location = new Location()
+									{
+										Street1 = "Peninsula Square, London SE10 0DX",
+										Region = "London",
+										Country = "GBR",
+									},
+									Name = "The O2 Arena"
+								},
+								Description = "World Concert Series",
+								Name = "World Concert Series",
+								Category = EventCategory.Music,
+								StartTimeUtc = eventDate,
+								EndTimeUtc = eventDate.AddHours(2),
+								EventId = "EVT1"
+							},
+							Guest = new Guest()
+							{
+								Name = "Jane Twain",
+								FamilyName = "Twain",
+								GivenName = "Jane",
+								IsPurchaser = false
+							},
+							Ticket = new Ticket()
+							{
+								Refundable = true,
+								TicketId = "TKT2",
+								TicketType = "Seat B",
+							}
+						}
+					}
+					},
+					From = new Location
+					{
+						Street1 = "19 Gosport Walk",
+						PostalCode = "N17 9QD",
+						Region = "London",
+						Country = "GBR"
+					},
+					To = new Location
+					{
+						Street1 = "73 Braganza St",
+						PostalCode = "SE17 3RD",
+						Region = "London",
+						Country = "GBR"
+					},
+					CreationTimeUtc = DateTime.UtcNow,
+					ExecutionTimeUtc = DateTime.UtcNow,
+					Status = new OrderStatus(OrderStage.Pending)
+					{
+						Actor = "buyer"
+					}
+				},
+				DeviceId = "2b6f0cc904d137be2e1730235f5664094b831186"
+			};
+
+			OutputResponse(await client.SendEvent(EventType.Order, orderTicketEvent));
 
 			// Send card payment method event
 			var paymentMethodEvent = new PaymentMethodEvent
@@ -227,9 +354,8 @@ namespace ExampleCore
 					OrderId = "n1QSYK0ceGNZqU28ien3",
 					Price = 4675,
 					ExecutionTimeUtc = DateTime.UtcNow,
-					Status = new OrderStatus
+					Status = new OrderStatus(OrderStage.Accepted)
 					{
-						Stage = OrderStage.Accepted,
 						Actor = "seller"
 					}
 				}

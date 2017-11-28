@@ -43,6 +43,11 @@
 		public int Quantity { get; set; }
 
 		/// <summary>
+		/// If the item being purchased is a ticket for an event, associate the ticket and event information here..
+		/// </summary>
+		public EventTicket EventTicket { get; set; }
+
+		/// <summary>
 		/// Any data about this customer that does not fit in one of the above fields
 		/// </summary>
 		public object Custom { get; set; }
