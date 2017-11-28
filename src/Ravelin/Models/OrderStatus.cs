@@ -24,7 +24,7 @@ namespace Ravelin.Models
 				case OrderStage.Fulfilled:
 				case OrderStage.Pending: 
 					if(!reason.HasValue) break;
-					else throw new InvalidEnumArgumentException("Invalid reason set for Failed order stage");
+					else throw new InvalidEnumArgumentException("Invalid reason set for order stage. Reason should be empty.");
 
 				case OrderStage.Failed:
 					if(reason == OrderStageReason.FailedPaymentDeclined ||
@@ -44,7 +44,7 @@ namespace Ravelin.Models
 					if(reason == OrderStageReason.RefundedReturned ||
 						reason == OrderStageReason.RefundedComplaint)
 					break;
-					else throw new InvalidEnumArgumentException("Invalid reason set for Cancelled order stage");
+					else throw new InvalidEnumArgumentException("Invalid reason set for Refunded order stage");
 			}
 		}
 
