@@ -41,9 +41,6 @@
     <StartupObject>ExampleNet451.Example</StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ravelin">
-      <HintPath>..\..\src\Ravelin\bin\Debug\net451\Ravelin.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
@@ -78,6 +75,16 @@
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\packages\xunit.analyzers.0.7.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Ravelin.Models\Ravelin.Models.csproj">
+      <Project>{5b0807ef-4a10-4ce0-99f6-1113e139e0ca}</Project>
+      <Name>Ravelin.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Ravelin\Ravelin.csproj">
+      <Project>{9730c108-81b7-4a14-9a8b-5410e14be7f3}</Project>
+      <Name>Ravelin</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

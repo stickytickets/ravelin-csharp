@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Ravelin.Models\Ravelin.Models.csproj" />
     <ProjectReference Include="..\..\src\Ravelin\Ravelin.csproj" />
   </ItemGroup>
 
