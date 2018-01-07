@@ -545,6 +545,17 @@ namespace ExampleCore
 
 			OutputBackfillResponse(await client.SendBackfillEvent(EventType.Checkout, backfillCheckoutEvent));
 
+			//Customer Label
+			var label = new CustomerLabel
+			{
+				CustomerId = "61283761287361",
+				Comment = "Test comment",
+				Label = Label.Genuine,
+				Reviewer = new Reviewer { Name = "John Reviewer", Email = "reviewer@review.com" }
+			};
+
+			OutputResponse(await client.SetCustomerLabel(label));
+
 			Console.WriteLine("\n\nPress <Enter> to continue.");
 			Console.ReadLine();
 		}
