@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel;
+using System.Runtime.Serialization;
+using Newtonsoft.Json;
 using Ravelin.Models.Enums;
 
 namespace Ravelin.Models
@@ -14,6 +16,12 @@ namespace Ravelin.Models
 		/// Action to take for this customer, according to Ravelin. One of ALLOW, REVIEW, PREVENT.
 		/// </summary>
 		public ScoreAction Action { get; set; }
+
+		/// <summary>
+		/// Ravelin score for this customer as an integer. Debugging purposes only
+		/// </summary>
+		[JsonProperty(PropertyName = "score")]
+		public int ScoreValue { get; set; }
 
 		/// <summary>
 		/// Source of the score (e.g. RAVELIN or MANUAL_REVIEW)
