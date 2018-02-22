@@ -61,7 +61,8 @@ namespace Ravelin
 
 		public async Task<BackfillResponse> SendBackfillEvent(EventType eventType, IEvent data)
 		{
-			return new BackfillResponse(await EventRequestAsync(string.Format("{0}/{1}", BackfillPrefix, eventType.GetEndpoint()), data).ConfigureAwait(false));
+			//return new BackfillResponse(await EventRequestAsync(string.Format("{0}/{1}", BackfillPrefix, eventType.GetEndpoint()), data).ConfigureAwait(false));
+			return new BackfillResponse(await EventRequestAsync($"{BackfillPrefix}/{eventType.GetEndpoint()}", data).ConfigureAwait(false));
 		}
 
 		public async Task<Response> SendEvent(EventType eventType, IEvent data)
@@ -77,7 +78,7 @@ namespace Ravelin
 		public async Task<Response> SetCustomerLabel(CustomerLabel customerLabel)
 		{
 			return new Response(await RequestAsync(client.BaseAddress + BuildUrl("label/customer"),
-				customerLabel != null ? customerLabel.Serialize() : "").ConfigureAwait(false));
+				customerLabel?.Serialize() ?? string.Empty).ConfigureAwait(false));
 		}
 
 		/// <summary>
@@ -107,7 +108,7 @@ namespace Ravelin
 			var sendToVault = !string.IsNullOrEmpty((data as IPaymentMethodEvent)?.PaymentMethod?.Pan);
 			var endpoint = (sendToVault ? RavelinVaultHost : client.BaseAddress.ToString()) + BuildUrl(urlPath, isScored);
 
-			return await RequestAsync(endpoint, data != null ? data.Serialize() : "").ConfigureAwait(false);
+			return await RequestAsync(endpoint, data?.Serialize() ?? string.Empty).ConfigureAwait(false);
 		}
 
 		private async Task<HttpResponseMessage> RequestAsync(string endPoint, string data, CancellationToken cancellationToken = default(CancellationToken))
