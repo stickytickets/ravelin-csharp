@@ -26,7 +26,7 @@ namespace Ravelin.Serialization
 				Formatting = Formatting.Indented,
 				NullValueHandling = NullValueHandling.Ignore,
 				ContractResolver = new CamelCasePropertyNamesContractResolver(),
-				Converters = new List<JsonConverter> { new StringEnumConverter(true), new UnixDateTimeConverter() }
+				Converters = new List<JsonConverter> { new StringEnumConverter(), new UnixDateTimeConverter() }
 			};
 		}
 
@@ -39,6 +39,11 @@ namespace Ravelin.Serialization
 			item.Timestamp = item.Timestamp ?? DateTime.UtcNow;
 
 			return JsonConvert.SerializeObject(item, serializerSettings);
+		}
+
+		public static string Serialize(this object data)
+		{
+			return JsonConvert.SerializeObject(data, serializerSettings);
 		}
 	}
 }
