@@ -50,12 +50,12 @@
 		/// <summary>
 		/// The latitude of the location
 		/// </summary>
-		public double Latitude { get; set; }
+		public double? Latitude { get; set; }
 
 		/// <summary>
 		/// The longitude of the location
 		/// </summary>
-		public double Longitude { get; set; }
+		public double? Longitude { get; set; }
 
 		/// <summary>
 		/// The geohash of the location, if applicable
