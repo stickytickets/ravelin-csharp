@@ -455,7 +455,7 @@ namespace ExampleNet451
 				Gateway = "stripe",
 				GatewayReference = "ch_15RsQR2eZvKYlo2CA8IfzCX0",
 				Reason = "general",
-				ChargebackStatus = ChargebackStatus.Lost,
+				Status = ChargebackStatus.Lost,
 				Amount = 195,
 				Currency = "USD",
 				DisputeTimeUtc = DateTime.UtcNow.AddHours(-2)
