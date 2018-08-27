@@ -29,13 +29,7 @@ namespace Ravelin.Models
 		/// <summary>
 		/// Status of the dispute
 		/// </summary>
-		[JsonIgnore]
-		public ChargebackStatus ChargebackStatus { get; set; }
-
-		/// <summary>
-		/// Status of the dispute passed to Ravelin
-		/// </summary>
-		public string Status => ChargebackStatus.ToString().ToUpper();
+		public ChargebackStatus Status { get; set; }
 
 		/// <summary>
 		/// The amount that is being disputed, in the lowest denomination of the currency
