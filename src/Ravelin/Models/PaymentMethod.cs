@@ -73,27 +73,27 @@ namespace Ravelin.Models
 		/// <summary>
 		/// The scheme of the card
 		/// </summary>
-		public CardType CardType { get; set; }
+		public CardType? CardType { get; set; }
 
 		/// <summary>
 		/// The expiry month as MM (required)
 		/// </summary>
-		public int ExpiryMonth { get; set; }
+		public int? ExpiryMonth { get; set; }
 
 		/// <summary>
 		/// The expiry year as YYYY (required)
 		/// </summary>
-		public int ExpiryYear { get; set; }
+		public int? ExpiryYear { get; set; }
 
 		/// <summary>
 		/// Whether the payment method was succesfully registered with the PSP (e.g. passed verification) (required)
 		/// </summary>
-		public bool SuccessfulRegistration { get; set; }
+		public bool? SuccessfulRegistration { get; set; }
 
 		/// <summary>
 		/// Whether the payment method was a prepaid card
 		/// </summary>
-		public bool PrepaidCard { get; set; }
+		public bool? PrepaidCard { get; set; }
 
 		/// <summary>
 		/// The issuer of the payment method (e.g. barclaycard)

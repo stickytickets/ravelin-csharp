@@ -345,6 +345,34 @@ namespace ExampleNet451
 
 			OutputScoredResponse(await client.SendEventAndScore(EventType.Transaction, transactionEvent));
 
+			var payPalTransactionEvent = new TransactionEvent
+			{
+				CustomerId = "61283761287361",
+				OrderId = "n1QSYK0ceGNZqU28ien3",
+				Transaction = new Transaction
+				{
+					TransactionId = "PP1f8594e06459fa046707c36159bb36",
+					Debit = 4675,
+					Credit = 0,
+					Currency = "GBP",
+					Success = true,
+					Gateway = "PayPal",
+					GatewayReference = "PP_16oaY72eZvKYlo2CE5ZDq9Vh",
+					TimeUtc = DateTime.UtcNow
+				},
+				PaymentMethod = new PaymentMethod
+				{
+					PaymentMethodId = "mark@twain.com",
+					PayPalEmail = "mark@twain.com",
+					RegistrationTimeUtc = DateTime.UtcNow,
+					Banned = false,
+					Active = true,
+					MethodType = PaymentMethodType.Paypal
+				}
+			};
+
+			OutputScoredResponse(await client.SendEventAndScore(EventType.Transaction, payPalTransactionEvent));
+
 			// Update pending order to accepted order status stage
 			orderEvent = new OrderEvent
 			{
