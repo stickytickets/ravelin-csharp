@@ -37,7 +37,7 @@
   </PropertyGroup>
 
 	<PropertyGroup>
-		<VersionPrefix>1.0.3</VersionPrefix>
+		<VersionPrefix>1.0.4</VersionPrefix>
 		<VersionSuffix></VersionSuffix>
 	</PropertyGroup>
 
