@@ -48,6 +48,16 @@ namespace Ravelin.Models
 		public DateTime? DisputeTimeUtc { get; set; }
 
 		/// <summary>
+		/// Whether liability for this chargeback has been shifted to a third-party.
+		/// </summary>
+		public bool LiabilityShifted { get; set; }
+
+		/// <summary>
+		/// Whether this chargeback was claimed for reasons other than fraud.
+		/// </summary>
+		public bool NonFraud { get; set; }
+
+		/// <summary>
 		/// Any data about this chargeback that does not fit in one of the above fields
 		/// </summary>
 		public object Custom { get; set; }
