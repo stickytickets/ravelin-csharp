@@ -486,7 +486,8 @@ namespace ExampleNet451
 				Status = ChargebackStatus.Lost,
 				Amount = 195,
 				Currency = "USD",
-				DisputeTimeUtc = DateTime.UtcNow.AddHours(-2)
+				DisputeTimeUtc = DateTime.UtcNow.AddHours(-2),
+				NonFraud = true
 			});
 
 			OutputResponse(await client.SendEvent(EventType.Chargeback, chargebackEvent));
