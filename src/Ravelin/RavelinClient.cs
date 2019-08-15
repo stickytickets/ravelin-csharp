@@ -10,6 +10,7 @@ using Ravelin.Models.Events;
 using Ravelin.Models.Responses;
 using Ravelin.Serialization;
 using Ravelin.Utils;
+
 #if NET451
 using System.Net;
 #endif
